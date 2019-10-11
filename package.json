@@ -1,0 +1,23 @@
+{
+  "name": "anypoi",
+  "version": "1.0.0",
+  "description": "a static serve base on node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jerryz0312/anypoi.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jerryz0312/anypoi/issues"
+  },
+  "homepage": "https://github.com/Jerryz0312/anypoi#readme",
+  "dependencies": {
+    "chalk": "^2.4.2"
+  }
+}
