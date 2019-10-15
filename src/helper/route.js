@@ -12,7 +12,7 @@ const Range = require("./range.js");
 const tplPath = Path.join(__dirname,'../template/dir.tpl')
 // readFileSync:读出来的数据是buffer数据，性能较快
 const source = Fs.readFileSync(tplPath);
-
+const isFresh = require("./cache.js");
 // 渲染模板
 const template = HandleBars.compile(source.toString());
  
@@ -25,7 +25,18 @@ module.exports = async function (req,res,filePath){
         if(stats.isFile()){
             const MimeTypeName = MimeType(filePath);
             res.setHeader('content-Type',MimeTypeName);
-            // 先将读进来的文件存起来
+           
+            console.log(isFresh(stats,req,res),"isFresh(stats,req,res)")
+            // 如果是存在缓存头部信息
+            if(isFresh(stats,req,res)){
+
+                console.log("缓存");
+                res.statusCode = 304;
+                res.end();
+                return;
+            }
+
+             // 先将读进来的文件存起来
             let rs ;
             // 获取range之后的结果
             const { code ,start,end} = Range(stats.size,req,res);
