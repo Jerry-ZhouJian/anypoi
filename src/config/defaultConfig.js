@@ -7,7 +7,21 @@ module.exports = {
     // 端口
     post:"9527",
     // 需要压缩的文件类型
-    compress:/\.(html|js|css|md)/
+    compress:/\.(html|js|css|md)/,
+    // 设置缓存配置
+    cache:{
+        // 秒为单位
+        maxAge:600,
+        // 
+        expires:true,
+        //
+        cacheControl:true,
+        //
+        lastModified:true,
+        //
+        etag:true
+
+    }
 
 
 }
