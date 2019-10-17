@@ -4,7 +4,7 @@ const promisify = require("util").promisify;
 const statsFun = promisify(Fs.stat);
 const readdir = promisify(Fs.readdir);
 const HandleBars = require("handlebars");
-const Config = require("../config/defaultConfig.js");
+
 const MimeType = require("../helper/mime.js");
 const Compress = require("./compress.js");
 const Range = require("./range.js");
@@ -16,7 +16,7 @@ const isFresh = require("./cache.js");
 // 渲染模板
 const template = HandleBars.compile(source.toString());
  
-module.exports = async function (req,res,filePath){
+module.exports = async function (req,res,filePath,Config){
 
     try {
         const stats = await statsFun(filePath);
@@ -25,12 +25,8 @@ module.exports = async function (req,res,filePath){
         if(stats.isFile()){
             const MimeTypeName = MimeType(filePath);
             res.setHeader('content-Type',MimeTypeName);
-           
-            console.log(isFresh(stats,req,res),"isFresh(stats,req,res)")
             // 如果是存在缓存头部信息
             if(isFresh(stats,req,res)){
-
-                console.log("缓存");
                 res.statusCode = 304;
                 res.end();
                 return;
