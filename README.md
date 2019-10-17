@@ -1,4 +1,4 @@
-npm i yargs# anypoi
+# anypoi
 a static serve base on node
 
 

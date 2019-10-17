@@ -1,6 +1,6 @@
 {
   "name": "anypoi",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "a static serve base on node",
   "main": "src/app.js",
   "bin":{
